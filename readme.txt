@@ -9,13 +9,12 @@ vscode 拡張機能
 
 step0
   超入門
-  https://github.com/hirossk/selfintro
+  https://github.com/hirossk/flasklearn
   venv環境の構築
-  python -m venv selfintro
+  python -m venv flasklearn
   pip install flask
 step1
-  リポジトリflasklogicの説明
-  https://github.com/hirossk/flasklogic
+  リポジトリmainの説明
 
   ⅰ．transition1.py,transition2.pyによる画面とデータ（session含む）の関係性
   ⅱ．loginapp1.pyによるログイン処理とフォーム入力
