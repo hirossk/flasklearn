@@ -35,4 +35,4 @@ def my_broadcast_event(message):
          broadcast=True) # broadcast=Trueとすることで全体へ送り返す
 
 if __name__ == '__main__':
-    socketio.run(app,port=80,debug=False)
+    socketio.run(app,port=5000,debug=False)

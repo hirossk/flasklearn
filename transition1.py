@@ -38,4 +38,4 @@ def link2():
     return render_template('transition/01link2.html',data = send_data)
 
 if __name__=='__main__':
-    app.run(host="0.0.0.0",port=80,debug=False)
+    app.run(host="0.0.0.0",port=5000,debug=False)

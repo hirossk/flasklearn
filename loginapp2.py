@@ -102,4 +102,4 @@ def protected():
     return 'The current :id is ' + str(current_user.id) + ' :username is '+ current_user.username
 
 if __name__=='__main__':
-    app.run(host="0.0.0.0",port=80,debug=False)
+    app.run(host="0.0.0.0",port=5000,debug=False)
