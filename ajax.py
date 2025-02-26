@@ -27,11 +27,13 @@ def ajax01_response():
 def ajax02_response():
     val1 = request.args.get('v1')
     val2 = request.args.get('v2')
-    num1 = int(val1)
-    num2 = int(val2)
-    result = num1 + num2
-    print(result)
-    # # APIの戻り値
+    try:
+        num1 = int(val1)
+        num2 = int(val2)
+        result = num1 + num2
+    except (ValueError, TypeError):
+        return jsonify({"error": "Invalid input"}), 400
+    # APIの戻り値
     return jsonify(result), 200
 
 if __name__=='__main__':

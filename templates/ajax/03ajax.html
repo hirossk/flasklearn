@@ -1,38 +1,35 @@
-<!-- 今回はJQueryを用いてAjax通信を実現するため、GoogleのCDN経由でJQueryを読み込む -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 <body>
     <p>値を入力してください</p>
     <input type="text" id="v1" value="">
     <input type="text" id="v2" value="">
     <div id="output"></div>
     <script>
-        $(function () {
-            //キーが上がったらリクエスト発動
-            $('#v1').keyup(function () {
-                $.ajax({
-                    url: '/api02',
-                    type: 'GET',
-                    data: {
-                        'v1': $('#v1').val(),
-                        'v2': $('#v2').val()
-                    }
-                }).done((data) => {
-                    $('#output').text(data);
-                });
-            });
-            $('#v2').keyup(function () {
-                $.ajax({
-                    url: '/api02',
-                    type: 'GET',
-                    data: {
-                        'v1': $('#v1').val(),
-                        'v2': $('#v2').val()
-                    }
-                }).done((data) => {
-                    $('#output').text(data);
-                });
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            function fetchData() {
+                const v1 = document.getElementById('v1').value;
+                const v2 = document.getElementById('v2').value;
+
+                fetch(`/api02?v1=${encodeURIComponent(v1)}&v2=${encodeURIComponent(v2)}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.text().then(errMsg => {
+                                throw new Error(`HTTP ${response.status}: ${errMsg}`);
+                            });
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('output').textContent = data;
+                    })
+                    .catch(error => {
+                        console.error('Fetch Error:', error);
+                        document.getElementById('output').textContent = 'エラーが発生しました。入力を確認してください。';
+                    });
+            }
+
+            document.getElementById('v1').addEventListener('keyup', fetchData);
+            document.getElementById('v2').addEventListener('keyup', fetchData);
         });
     </script>
 </body>
+ g
